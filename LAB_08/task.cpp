@@ -46,13 +46,8 @@ double hord_asm(double (*func)(double), double a, double b, size_t n)
     // auto f = func;
     __asm__ volatile(
         "movq %[n], %%rcx\n\t"   // Устанавливаем счетчик итераций в регистре rcx
-        // "movq %[f], %%rax\n\t"
-        // "fldl %1\n\t"
         "cycle:\n\t"
-        // "movq %%rsi, %2\n\t"  // Загружаем x1 в вершину стека FPU
-
         
-        // "call *%4\n\t"
         "fldl %[x1]\n"
         "fldl %[x1]\n"              // Загружаем значение x в вершину стека FPU
         "fmulp \n"   // Умножаем вершину стека FPU саму на себя
